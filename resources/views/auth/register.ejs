@@ -9,20 +9,23 @@
               <a href="/login" class="font-medium "> Already have a Sloppy Joes account?</a>
             </p>
           </div>
-          <form class="mt-8 space-y-6" action="#" method="POST">
+          <form class="mt-8 space-y-6" action="/register" method="POST">
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
+              <% if(messages.error){ %>
+              <span class="text-red-500 text-sm"><%= messages.error%></span>
+              <% } %>
                 <div>
                     <label for="cust-name" class="sr-only">Name</label>
-                    <input id="cust-name" name="cust-name" type="text" autocomplete="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Full Name">
+                    <input id="name" value="<%= messages.name %>" name="name" type="text" autocomplete="name" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Full Name">
                   </div>
                 <div>
                 <label for="email-address" class="sr-only">Email address</label>
-                <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Email address">
+                <input id="email" value= "<%= messages.email %> " name="email" type="email" autocomplete="email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Email address">
               </div>
               <div>
                 <label for="password" class="sr-only">Password</label>
-                <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Password">
+                <input id="password" name="password" type="password" autocomplete="current-password" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#FE5F1E] focus:border-[#FE5F1E] focus:z-10 sm:text-sm" placeholder="Password">
               </div>
             </div>
       
