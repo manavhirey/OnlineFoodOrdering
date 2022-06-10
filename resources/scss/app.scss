@@ -61,7 +61,7 @@ section.cart{
 
 section.login{
     background: $secondary;
-    min-height: calc(100vh - 86px);
+    min-height: calc(100vh - 105px);
     a{
         color: $primary;
         &:hover{
@@ -77,4 +77,120 @@ section.login{
 
 a.link{
     color: $primary
+}
+
+section.status{
+    background: $secondary;
+    min-height: calc(100vh - 105px);
+}
+
+.status-container {
+    padding: 60px 0 0;
+}
+
+.status-container ul{
+    margin-left: 84px ;
+}
+
+.status-container ul li span{
+    position: relative;
+    padding-left: 20px;
+}
+
+// Including the Dot on Order
+.status-container ul li span:after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top:50%;
+    background: $dark;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 1px 10px $secondary;
+}
+
+// Icons
+.status-container ul li span:before{
+    font-family: "Line Awesome Free";
+    font-size: 46px;
+    font-weight: 600;
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: inherit
+}
+
+.status-container ul li:nth-child(1) span:before{
+    content: '\f46c';
+}
+
+.status-container ul li:nth-child(2) span:before{
+    content: '\f058';
+}
+
+.status-container ul li:nth-child(3) span:before{
+    content: '\f805';
+}
+
+.status-container ul li:nth-child(4) span:before{
+    content: '\f48b';
+}
+
+.status-container ul li:nth-child(5) span:before{
+    content: '\f164';
+}
+
+// Line
+.status-container ul li {
+    position: relative;
+}
+.status-container ul li:before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 2px;
+    height: 100%;
+    background: $dark;
+    margin-top: 10px;
+}
+
+// Final Status Line Remove
+.status-container ul li:nth-child(5) span:after {
+    box-shadow: 0 20px 1px 20px $secondary;
+}
+
+// Line-grey
+.status-container ul li.step-completed:before{
+    background: $grey;
+}
+
+// dot
+.status-container ul li.step-completed span:after{
+    background: $grey;
+}
+
+// text
+
+.status-container ul li.step-completed span{
+    color: $grey;
+}
+
+// Current Status
+.status-container ul li.current span{
+    color: $primary;
+}
+
+.status-container ul li.current span:after{
+    background: $primary;
+}
+
+.status-container ul li small {
+    float: right;
+    font-size: 14px;
+    margin-top: 8px;
+    color: inherit;
 }

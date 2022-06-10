@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const passport = require('passport')
 const MongoDbStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
+const Emitter = require('events')
 
 //Database Connection
 const url = 'mongodb://localhost/sloppyjoes';
@@ -23,9 +24,14 @@ mongoose.connection.once('open', () => {
 
 //Session Store
 let mongoStore = new MongoDbStore({
-                    mongooseConnection: connection,
-                    collection: 'sessions' 
-                })
+    mongooseConnection: connection,
+    collection: 'sessions' 
+})
+
+// Event Emitter
+const eventEmitter = new Emitter()
+app.set('eventEmitter', eventEmitter)
+
 //Session Config
 app.use(session({
     secret: process.env.COOKIES_ENCRYPT,
@@ -64,6 +70,24 @@ app.set('view engine','ejs')
 // Routes
 require('./routes/web')(app)
 
-app.listen(PORT, () =>{
+const server = app.listen(PORT, () =>{
     console.log(`Listening on port ${PORT}`)
+})
+
+// Socket.io
+
+const io = require('socket.io')(server)
+io.on('connection', (socket) => {
+    // Join 
+    socket.on('join',(roomName) => {
+        socket.join(roomName)
+    })
+})
+
+eventEmitter.on('orderUpdated', (data) => {
+    io.to(`order_${data.id}`).emit('orderUpdated', data)
+})
+
+eventEmitter.on('orderPlaced', (data) => {
+    io.to('adminRoom').emit('orderPlaced', data)
 })
