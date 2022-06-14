@@ -194,3 +194,20 @@ section.status{
     margin-top: 8px;
     color: inherit;
 }
+
+@media(max-width: 1060px) {
+    .container {
+        max-width: 80%;
+    }
+    table{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media(max-width: 768px) {
+    .status-container ul li span:before {
+        font-size: 34px;
+    }
+}
